@@ -1,0 +1,43 @@
+html,body{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background: url(../img/hl.jpg) no-repeat fixed center;
+}
+
+.layui-form{
+	margin: 20px auto;
+	width: 380px;
+	border: #147c6b solid 0.4px;
+	padding: 10px;
+	padding-top: 30px;
+	background: rgba(10,10,10,0.4);
+}
+
+.layui-form-label{
+	color: #fff;
+}
+
+.layui-form-radio{
+	color: #fff;
+}
+
+.link-register{
+	color:#fff;
+}
+
+.link-register a{
+	color:#dad2ef;
+}
+
+h1{
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	color: #7c837a;
+	margin-top: 80px;
+	font: bold;
+	font-size: 25pt;
+}

@@ -1,0 +1,58 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><%=Page.Title %> - 网上家教管理系统</title>
+	<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+	<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="css/master.css"/>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="layui-row">
+		<div class="layui-col-sm2">
+			<div>
+				<img src="img/sea.jpg" class="layui-circle user-img">
+			</div>
+			<div class="user-infor">
+				<p>姓名：<label><%=Session["login_name"] %></label></p>
+				<%//管理员不显示性别和年龄 %>
+				<%if (Session["login_role"].AsString() != "管理员")
+                    { %>
+				<p>性别：<label><%=Session["login_sex"] %></label></p>
+				<p>年龄：<label><%=Session["login_age"] %></label></p>
+				<%} %>
+				<p>角色：<label><%=Session["login_role"] %></label></p>
+			</div>
+		</div>
+		<div class="layui-col-sm10">
+			<div class="layui-row">
+				<ul class="layui-nav">
+					<li class="layui-nav-item"><a href="">首页</a></li>
+					<li class="layui-nav-item"><a href="javascript:;">发布信息</a></li>
+					<li class="layui-nav-item"><a href="javascript:;">学员信息</a></li>
+					<li class="layui-nav-item"><a href="javascript:;">教员信息</a></li>
+					<li class="layui-nav-item"><a href="">我的预约</a></li>
+					<li class="layui-nav-item"><a href="">个人中心</a></li>
+				</ul>
+			</div>
+				
+			<form id="form1" runat="server">
+				<div>
+					<asp:ContentPlaceHolder id="content" runat="server">
+        
+					</asp:ContentPlaceHolder>
+				</div>
+			</form>
+		</div>
+	</div>
+    
+    <asp:ContentPlaceHolder id="script" runat="server">
+        
+    </asp:ContentPlaceHolder>
+</body>
+</html>
