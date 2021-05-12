@@ -9,7 +9,7 @@ body>.layui-row{
 	height: 100%;
 }
 .layui-col-sm2{
-	background: rgba(10,10,10,0.3);
+	background: rgba(10,10,10,0.5);
 	height: 100%;
 	padding-top: 20px;
 }
@@ -35,4 +35,23 @@ body>.layui-row{
 }
 .layui-nav{
 	background: rgba(10,10,10,0.4);
+}
+
+form {
+	background: rgba(10,10,10,0.3);
+	height:100%;
+}
+
+form label,form h2{
+	color:#fff;
+}
+
+form .content-edit {
+	width: 400px;
+	padding: 10px;
+	margin: 0 auto;
+}
+
+form h2{
+	padding:10px;
 }
