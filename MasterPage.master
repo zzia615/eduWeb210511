@@ -40,14 +40,13 @@
 					<li class="layui-nav-item"><a href="">个人中心</a></li>
 				</ul>
 			</div>
-				
-			<form id="form1" runat="server">
-				<div>
-					<asp:ContentPlaceHolder id="content" runat="server">
+			<div>
+				<form id="form1" runat="server" class="layui-form">
+						<asp:ContentPlaceHolder id="content" runat="server">
         
-					</asp:ContentPlaceHolder>
-				</div>
-			</form>
+						</asp:ContentPlaceHolder>
+				</form>
+			</div>
 		</div>
 	</div>
     

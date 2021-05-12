@@ -128,11 +128,45 @@ public static class ConvertExtension
     {
         return Newtonsoft.Json.JsonConvert.SerializeObject(obj);
     }
+    /// <summary>
+    /// 弹出提示
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="msg">提示内容</param>
     public static void ShowAlert(this System.Web.UI.Page page, string msg)
     {
         var msgJson = new { code = 0, msg }.AsJson();
         msgJson = msgJson.Replace("'", "");
         page.ClientScript.RegisterStartupScript(page.GetType(), "message", "<script>var msgData=JSON.parse('" + msgJson + "');layui.layer.alert(msgData.msg);</script>");
     }
-    
+    /// <summary>
+    /// 弹出提示并跳转到指定页面
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="msg">提示内容</param>
+    /// <param name="url">URL地址</param>
+    public static void ShowAlert(this System.Web.UI.Page page, string msg,string url)
+    {
+        var msgJson = new { code = 0, msg }.AsJson();
+        msgJson = msgJson.Replace("'", "");
+        page.ClientScript.RegisterStartupScript(page.GetType(), "message", "<script>var msgData=JSON.parse('" + msgJson + "');layui.layer.alert(msgData.msg,function(){window.location.href='"+url+"';});</script>");
+    }
+
+    public static void SetInputValue(this System.Web.UI.Page page, string inputId, string val)
+    {
+        page.ClientScript.RegisterStartupScript(page.GetType(), "setInputValue", "<script>var $=layui.$;$('#"+ inputId + "').val('" + val+ "');layui.form.render();</script>");
+    }
+
+    public static void SetRadioChecked(this System.Web.UI.Page page, string inputName, string val,bool selected)
+    {
+        if (selected)
+        {
+            page.ClientScript.RegisterStartupScript(page.GetType(), "setInputValue_"+val, "<script>var $=layui.$;$('input[name=" + inputName + "][value=\"" + val + "\"]').attr('checked',true);layui.form.render();</script>");
+        }
+        else
+        {
+
+            page.ClientScript.RegisterStartupScript(page.GetType(), "setInputValue_" + val, "<script>var $=layui.$;$('input[name=" + inputName + "][value=\"" + val + "\"]').attr('checked',false);layui.form.render();</script>");
+        }
+    }
 }
