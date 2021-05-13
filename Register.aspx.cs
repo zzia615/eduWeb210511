@@ -30,7 +30,8 @@ public partial class Login : System.Web.UI.Page
                         {
                             code = code,
                             name = name,
-                            pwd = pwd
+                            pwd = pwd,
+                            photoUrl = "/img/user-default.jpg"
                         });
                     }
                     break;
@@ -40,7 +41,8 @@ public partial class Login : System.Web.UI.Page
                         {
                             code = code,
                             name = name,
-                            pwd = pwd
+                            pwd = pwd,
+                            photoUrl = "/img/user-default.jpg"
                         });
                     }
                     break;
@@ -51,9 +53,9 @@ public partial class Login : System.Web.UI.Page
             Page.ShowAlert("注册成功，请返回登录");
             return;
         }
-        catch (Exception ex)
+        catch
         {
-            Page.ShowAlert("注册异常，错误信息:"+ex.Message);
+            Page.ShowAlert("注册异常，请检查账号是否被注册");
             return;
         }
 

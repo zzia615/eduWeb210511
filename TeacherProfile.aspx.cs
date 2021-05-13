@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class StuProfile : System.Web.UI.Page
+public partial class TeacherProfile : System.Web.UI.Page
 {
     SqlUtil Sql = new SqlUtil();
     protected void Page_Load(object sender, EventArgs e)
@@ -16,7 +16,7 @@ public partial class StuProfile : System.Web.UI.Page
             string code = Request.QueryString["code"];
             var pp = new System.Data.IDbDataParameter[1];
             pp[0] = Sql.CreateParameter("@code", code);
-            var data = Sql.Query<StuInfo>("code=@code", pp).FirstOrDefault();
+            var data = Sql.Query<TeacherInfo>("code=@code", pp).FirstOrDefault();
             if (data == null)
             {
                 this.ShowAlert("用户信息不存在", "Default.aspx");
@@ -37,7 +37,7 @@ public partial class StuProfile : System.Web.UI.Page
             {
                 sex.SelectedValue = "女";
             }
-            grade.Text = data.grade;
+            kemu.Text = data.kemu;
             lxfs.Text = data.lxfs;
             Image1.ImageUrl = data.photoUrl;
         }
@@ -48,7 +48,7 @@ public partial class StuProfile : System.Web.UI.Page
         string code = Request.QueryString["code"];
         var pp = new System.Data.IDbDataParameter[1];
         pp[0] = Sql.CreateParameter("@code", code);
-        var data = Sql.Query<StuInfo>("code=@code", pp).FirstOrDefault();
+        var data = Sql.Query<TeacherInfo>("code=@code", pp).FirstOrDefault();
         if (data == null)
         {
             this.ShowAlert("用户信息不存在", "Default.aspx");
@@ -59,7 +59,7 @@ public partial class StuProfile : System.Web.UI.Page
         //获取性别
         data.sex = sex.SelectedValue;
 
-        data.grade = grade.Text;
+        data.kemu = kemu.Text;
         data.lxfs = lxfs.Text;
         //保存图片START
         string url = "/Upload/Photo/";

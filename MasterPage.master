@@ -37,7 +37,7 @@
 					<li class="layui-nav-item"><a href="javascript:;">学员信息</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">教员信息</a></li>
 					<li class="layui-nav-item"><a href="">我的预约</a></li>
-					<li class="layui-nav-item"><a href="">个人中心</a></li>
+					<li class="layui-nav-item"><a href="ProfileInfo.aspx">个人中心</a></li>
 				</ul>
 			</div>
 			<div>

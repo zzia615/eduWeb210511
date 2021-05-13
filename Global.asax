@@ -18,7 +18,8 @@
                 code = "admin",
                 name = "admin",
                 lxfs = "-",
-                pwd = "123456"
+                pwd = "123456",
+                photoUrl="/img/user-default.jpg"
             });
         }
     }
