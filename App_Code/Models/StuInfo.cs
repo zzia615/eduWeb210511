@@ -38,4 +38,9 @@
     /// </summary>
     [StringLength(50)]
     public string lxfs { get; set; }
+    /// <summary>
+    /// 照片路径
+    /// </summary>
+    [StringLength(500)]
+    public string photoUrl { get; set; }
 }

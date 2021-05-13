@@ -16,7 +16,7 @@
     <div class="layui-row">
 		<div class="layui-col-sm2">
 			<div>
-				<img src="img/sea.jpg" class="layui-circle user-img">
+				<img src="<%=Session["login_photo"] %>" class="layui-circle user-img">
 			</div>
 			<div class="user-infor">
 				<p>姓名：<label><%=Session["login_name"] %></label></p>

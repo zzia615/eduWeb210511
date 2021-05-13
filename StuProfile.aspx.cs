@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -42,7 +43,8 @@ public partial class StuProfile : System.Web.UI.Page
                 sex.SelectedValue = "女";
             }
             grade.Text = data.grade;
-            lxfs.Text = data.lxfs; 
+            lxfs.Text = data.lxfs;
+            Image1.ImageUrl = data.photoUrl;
         }
     }
 
@@ -69,7 +71,20 @@ public partial class StuProfile : System.Web.UI.Page
 
         data.grade = grade.Text;
         data.lxfs = lxfs.Text;
+        //保存图片START
+        string url = "/Upload/Photo/";
+        string fileName = FileUpload1.SaveFile(Server.MapPath(url));
+        if (!string.IsNullOrEmpty(fileName))
+            data.photoUrl = url + fileName;
+        //保存图片END
         Sql.Edit(data);
+        //重新设置缓存信息
+        Session["login_photo"] = data.photoUrl;
+        Session["login_name"] = data.name;
+        Session["login_sex"] = data.sex;
+        Session["login_age"] = data.age;
+        Session["login_pwd"] = data.pwd;
+
         this.ShowAlert("修改信息成功", "StuProfile.aspx?code=" + code);
     }
 

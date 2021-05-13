@@ -30,6 +30,7 @@ public partial class Login : System.Web.UI.Page
                         var data = Sql.Query<AdminInfo>("code=@code", parms).FirstOrDefault();
                         if (data != null)
                         {
+                            Session["login_photo"] = data.photoUrl;
                             Session["login_name"] = data.name;
                             Session["login_pwd"] = data.pwd;
                         }
@@ -41,6 +42,7 @@ public partial class Login : System.Web.UI.Page
                         var data = Sql.Query<TeacherInfo>("code=@code", parms).FirstOrDefault();
                         if (data != null)
                         {
+                            Session["login_photo"] = data.photoUrl;
                             Session["login_name"] = data.name;
                             Session["login_sex"] = data.sex;
                             Session["login_age"] = data.age;
@@ -54,6 +56,7 @@ public partial class Login : System.Web.UI.Page
                         var data = Sql.Query<StuInfo>("code=@code", parms).FirstOrDefault();
                         if (data != null)
                         {
+                            Session["login_photo"] = data.photoUrl;
                             Session["login_name"] = data.name;
                             Session["login_sex"] = data.sex;
                             Session["login_age"] = data.age;

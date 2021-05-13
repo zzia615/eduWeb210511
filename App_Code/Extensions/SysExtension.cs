@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 /// <summary>
@@ -167,6 +168,26 @@ public static class ConvertExtension
         {
 
             page.ClientScript.RegisterStartupScript(page.GetType(), "setInputValue_" + val, "<script>var $=layui.$;$('input[name=" + inputName + "][value=\"" + val + "\"]').attr('checked',false);layui.form.render();</script>");
+        }
+    }
+    /// <summary>
+    /// 保存文件
+    /// </summary>
+    /// <param name="file"></param>
+    /// <param name="path">文件路径</param>
+    /// <returns></returns>
+    public static string SaveFile(this System.Web.UI.WebControls.FileUpload file,string path)
+    {
+        if (file.HasFile)
+        {
+            FileInfo info = new FileInfo(file.FileName);
+            string fileName =Guid.NewGuid() + info.Extension;
+            file.SaveAs(Path.Combine(path, fileName));
+            return fileName;
+        }
+        else
+        {
+            return string.Empty;
         }
     }
 }

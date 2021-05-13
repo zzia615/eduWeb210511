@@ -52,4 +52,9 @@ public class TeacherInfo
     /// </summary>
     [StringLength(50)]
     public string kemu { get; set; }
+    /// <summary>
+    /// 照片路径
+    /// </summary>
+    [StringLength(500)]
+    public string photoUrl { get; set; }
 }
