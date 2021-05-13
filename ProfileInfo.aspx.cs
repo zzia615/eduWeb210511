@@ -22,5 +22,7 @@ public partial class ProfileInfo : System.Web.UI.Page
             Server.Transfer("StuProfile.aspx?code=" + code);
         else if (role == "教员")
             Server.Transfer("TeacherProfile.aspx?code=" + code);
+        else if (role == "管理员")
+            Server.Transfer("AdminProfile.aspx?code=" + code);
     }
 }

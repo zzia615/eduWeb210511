@@ -44,7 +44,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label"><i class="layui-icon layui-icon-user"></i>角色</label>
 			<div class="layui-input-block">
-				<input type="radio" name="role" value="教员" title="教员">
+				<input type="radio" name="role" value="教员" title="教员" checked="">
 				<input type="radio" name="role" value="学员" title="学员">
 			</div>
 		</div>

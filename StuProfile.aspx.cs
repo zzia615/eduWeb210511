@@ -73,7 +73,6 @@ public partial class StuProfile : System.Web.UI.Page
         Session["login_name"] = data.name;
         Session["login_sex"] = data.sex;
         Session["login_age"] = data.age;
-        Session["login_pwd"] = data.pwd;
 
         this.ShowAlert("修改信息成功", "ProfileInfo.aspx");
     }
