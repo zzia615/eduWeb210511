@@ -16,28 +16,44 @@
     <div class="layui-row">
 		<div class="layui-col-sm2">
 			<div>
+				<%if (string.IsNullOrEmpty(Session["login_code"].AsString())){%>
+				<img src="img/user-default.jpg" class="layui-circle user-img">
+				<%} else{%>
 				<img src="<%=Session["login_photo"] %>" class="layui-circle user-img">
+				<%}%>
 			</div>
 			<div class="user-infor">
+				<%if (string.IsNullOrEmpty(Session["login_code"].AsString())) {%>
+				<p>姓名：<label>游客</label></p>
+				<p>性别：<label>未知</label></p>
+				<p>年龄：<label>未知</label></p>
+				<p>角色：<label>游客</label></p>
+				<%}else{ %>
 				<p>姓名：<label><%=Session["login_name"] %></label></p>
 				<%//管理员不显示性别和年龄 %>
-				<%if (Session["login_role"].AsString() != "管理员")
-                    { %>
+				<%if (Session["login_role"].AsString() != "管理员"){ %>
 				<p>性别：<label><%=Session["login_sex"] %></label></p>
 				<p>年龄：<label><%=Session["login_age"] %></label></p>
 				<%} %>
 				<p>角色：<label><%=Session["login_role"] %></label></p>
+				<%} %>
 			</div>
 		</div>
 		<div class="layui-col-sm10">
 			<div class="layui-row">
 				<ul class="layui-nav">
 					<li class="layui-nav-item"><a href="">首页</a></li>
-					<li class="layui-nav-item"><a href="javascript:;">发布信息</a></li>
 					<li class="layui-nav-item"><a href="javascript:;">学员信息</a></li>
-					<li class="layui-nav-item"><a href="javascript:;">教员信息</a></li>
+					<li class="layui-nav-item"><a href="TeacherList.aspx">教员信息</a></li>
+					<%if (string.IsNullOrEmpty(Session["login_code"].AsString())){%>
+					<li class="layui-nav-item"><a href="Login.aspx">登录</a></li>
+					<li class="layui-nav-item"><a href="Register.aspx">注册</a></li>
+					<%} else {%>
+					<li class="layui-nav-item"><a href="javascript:;">发布信息</a></li>
 					<li class="layui-nav-item"><a href="">我的预约</a></li>
 					<li class="layui-nav-item"><a href="ProfileInfo.aspx">个人中心</a></li>
+					<li class="layui-nav-item"><a href="ProfileInfo.aspx">退出</a></li>
+					<%} %>
 				</ul>
 			</div>
 			<div>
