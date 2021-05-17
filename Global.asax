@@ -9,6 +9,7 @@
         Sql.CreateTable<AdminInfo>();
         Sql.CreateTable<TeacherInfo>();
         Sql.CreateTable<StuInfo>();
+        Sql.CreateTable<TeacherORDER>();
         int count = Sql.QueryCount<AdminInfo>("1=1");
         //默认管理员账号admin 密码123456
         if (count <= 0)
