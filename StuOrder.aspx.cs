@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class TeacherOrder : System.Web.UI.Page
+public partial class StuOrder : System.Web.UI.Page
 {
     SqlUtil Sql = new SqlUtil();
     protected void Page_Load(object sender, EventArgs e)
@@ -20,7 +20,7 @@ public partial class TeacherOrder : System.Web.UI.Page
             string code = Request.QueryString["code"];
             var pp = new System.Data.IDbDataParameter[1];
             pp[0] = Sql.CreateParameter("@code", code);
-            var data = Sql.Query<TeacherInfo>("code=@code", pp).FirstOrDefault();
+            var data = Sql.Query<StuInfo>("code=@code", pp).FirstOrDefault();
             if (data == null)
             {
                 this.ShowAlert("用户信息不存在", "Default.aspx");
@@ -41,7 +41,7 @@ public partial class TeacherOrder : System.Web.UI.Page
             {
                 sex.Text = "女";
             }
-            kemu.Text = data.kemu;
+            grade.Text = data.grade;
             lxfs.Text = data.lxfs;
             Image1.ImageUrl = data.photoUrl;
         }
@@ -49,7 +49,7 @@ public partial class TeacherOrder : System.Web.UI.Page
 
     protected void btnConfirmClicked(object sender, EventArgs e)
     {
-        string code = Request.QueryString["code"];
+        string code = Session["login_code"].AsString();
         var pp = new System.Data.IDbDataParameter[1];
         pp[0] = Sql.CreateParameter("@code", code);
         var data = Sql.Query<TeacherInfo>("code=@code", pp).FirstOrDefault();
@@ -61,7 +61,7 @@ public partial class TeacherOrder : System.Web.UI.Page
 
         var pp1 = new System.Data.IDbDataParameter[2];
         pp1[0] = Sql.CreateParameter("@code", code);
-        pp1[1] = Sql.CreateParameter("@stu_code", Session["login_code"].AsString());
+        pp1[1] = Sql.CreateParameter("@stu_code", Request.QueryString["code"]);
         int count = Sql.QueryCount<TeacherORDER>("code=@code and stu_code=@stu_code and yyzt=N'已预约'", pp1);
         if (count > 0)
         {
@@ -80,7 +80,7 @@ public partial class TeacherOrder : System.Web.UI.Page
             photoUrl = data.photoUrl,
             sex = data.sex,
             yyzt = "已预约",
-            stu_code = Session["login_code"].AsString()
+            stu_code = Request.QueryString["code"]
         };
         Sql.Insert(order);
 

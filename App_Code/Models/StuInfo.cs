@@ -1,4 +1,6 @@
-﻿public class StuInfo
+﻿using System;
+
+public class StuInfo
 {
     /// <summary>
     /// 账号
@@ -43,4 +45,13 @@
     /// </summary>
     [StringLength(500)]
     public string photoUrl { get; set; }
+    /// <summary>
+    /// 学生需求
+    /// </summary>
+    [StringLength(2000)]
+    public string needs { get; set; }
+    /// <summary>
+    /// 学生需求发布日期
+    /// </summary>
+    public DateTime? pubDate { get; set; }
 }

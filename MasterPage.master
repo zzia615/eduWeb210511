@@ -42,14 +42,14 @@
 		<div class="layui-col-sm10">
 			<div class="layui-row">
 				<ul class="layui-nav">
-					<li class="layui-nav-item"><a href="">首页</a></li>
+					<%--<li class="layui-nav-item"><a href="">首页</a></li>--%>
 					<%if (Session["login_role"].AsString() == "学员"){ %>
 					<li class="layui-nav-item"><a href="TeacherList.aspx">教员信息</a></li>
-					<li class="layui-nav-item"><a href="javascript:;">发布信息</a></li>
+					<li class="layui-nav-item"><a href="StuNeedsPublish.aspx">发布信息</a></li>
 					<li class="layui-nav-item"><a href="OrderInfo.aspx">我的预约</a></li>
 					<%} %>
 					<%if (Session["login_role"].AsString() == "教员"){ %>
-					<li class="layui-nav-item"><a href="javascript:;">学员信息</a></li>
+					<li class="layui-nav-item"><a href="StuList.aspx">学员信息</a></li>
 					<li class="layui-nav-item"><a href="OrderInfo.aspx">我的预约</a></li>
 					<%} %>
 					<%if (Session["login_role"].AsString() == "管理员"){ %>
@@ -57,6 +57,8 @@
 					<li class="layui-nav-item"><a href="TeacherManage.aspx">教员信息</a></li>
 					<%} %>
 					<%if (string.IsNullOrEmpty(Session["login_code"].AsString())){%>
+					<li class="layui-nav-item"><a href="StuList.aspx">学员信息</a></li>
+					<li class="layui-nav-item"><a href="TeacherList.aspx">教员信息</a></li>
 					<li class="layui-nav-item"><a href="Login.aspx">登录</a></li>
 					<li class="layui-nav-item"><a href="Register.aspx">注册</a></li>
 					<%} else {%>
