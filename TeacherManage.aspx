@@ -1,7 +1,7 @@
-﻿<%@ Page Title="我的预约" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="TeacherOrderInfo.aspx.cs" Inherits="TeacherOrderInfo" %>
+﻿<%@ Page Title="教员信息" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="TeacherManage.aspx.cs" Inherits="TeacherManage" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-   <style>
+    <style>
        form{
            padding:10px;
        }
@@ -24,6 +24,8 @@
                 <ItemTemplate>
                     <asp:Image ID="Image1" runat="server" ImageUrl='<%# Bind("photoUrl") %>' Width="100" Height="100"/>
                 </ItemTemplate>
+
+<ItemStyle Width="100px"></ItemStyle>
             </asp:TemplateField>
             <asp:BoundField DataField="code" HeaderText="账号" ReadOnly="True" SortExpression="code" />
             <asp:BoundField DataField="name" HeaderText="姓名" SortExpression="name" />
@@ -31,16 +33,16 @@
             <asp:BoundField DataField="age" HeaderText="年龄" SortExpression="age" />
             <asp:BoundField DataField="lxfs" HeaderText="联系方式" SortExpression="lxfs" />
             <asp:BoundField DataField="kemu" HeaderText="科目" SortExpression="kemu" />
-            <asp:BoundField DataField="yyzt" HeaderText="预约状态" SortExpression="yyzt" />
-            <asp:TemplateField ItemStyle-Width="130">
+            <asp:TemplateField ItemStyle-Width="100">
                 <ItemTemplate>
-                    <asp:HyperLink ID="HyperLink2" runat="server" CssClass="layui-btn layui-btn-sm layui-btn-danger" NavigateUrl='<%#"TeacherOrderCancel.aspx?id="+Eval("id") %>'>取消</asp:HyperLink>
-                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="layui-btn layui-btn-sm" NavigateUrl='<%#"TeacherOrderFinish.aspx?id="+Eval("id") %>'>完成</asp:HyperLink>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="删除" CssClass="layui-btn layui-btn-danger"></asp:LinkButton>
                 </ItemTemplate>
+
+<ItemStyle Width="100px"></ItemStyle>
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conStr %>" DeleteCommand="DELETE FROM [TeacherInfo] WHERE [code] = @code" InsertCommand="INSERT INTO [TeacherInfo] ([code], [name], [pwd], [sex], [age], [lxfs], [kemu], [photoUrl]) VALUES (@code, @name, @pwd, @sex, @age, @lxfs, @kemu, @photoUrl)" SelectCommand="SELECT * FROM [TeacherOrder] where stu_code=@stu_code" UpdateCommand="UPDATE [TeacherInfo] SET [name] = @name, [pwd] = @pwd, [sex] = @sex, [age] = @age, [lxfs] = @lxfs, [kemu] = @kemu, [photoUrl] = @photoUrl WHERE [code] = @code">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conStr %>" DeleteCommand="DELETE FROM [TeacherInfo] WHERE [code] = @code" InsertCommand="INSERT INTO [TeacherInfo] ([code], [name], [pwd], [sex], [age], [lxfs], [kemu], [photoUrl]) VALUES (@code, @name, @pwd, @sex, @age, @lxfs, @kemu, @photoUrl)" SelectCommand="SELECT * FROM [TeacherInfo]" UpdateCommand="UPDATE [TeacherInfo] SET [name] = @name, [pwd] = @pwd, [sex] = @sex, [age] = @age, [lxfs] = @lxfs, [kemu] = @kemu, [photoUrl] = @photoUrl WHERE [code] = @code">
         <DeleteParameters>
             <asp:Parameter Name="code" Type="String" />
         </DeleteParameters>
@@ -64,9 +66,6 @@
             <asp:Parameter Name="photoUrl" Type="String" />
             <asp:Parameter Name="code" Type="String" />
         </UpdateParameters>
-        <SelectParameters>
-            <asp:QueryStringParameter Name="stu_code" Type="String" QueryStringField="code" />
-        </SelectParameters>
     </asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" Runat="Server">

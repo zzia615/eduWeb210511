@@ -53,6 +53,16 @@ public partial class TeacherOrder : System.Web.UI.Page
             this.ShowAlert("用户信息不存在", "Default.aspx");
             return;
         }
+
+        var pp1 = new System.Data.IDbDataParameter[1];
+        pp1[0] = Sql.CreateParameter("@code", code);
+        int count = Sql.QueryCount<TeacherORDER>("code=@code and yyzt=N'已预约'", pp1);
+        if (count > 0)
+        {
+            this.ShowAlert("不允许重复预约", "Default.aspx");
+            return;
+        }
+
         //教师预约信息
         TeacherORDER order = new TeacherORDER
         {

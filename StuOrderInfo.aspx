@@ -1,7 +1,7 @@
-﻿<%@ Page Title="我的预约" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="TeacherOrderInfo.aspx.cs" Inherits="TeacherOrderInfo" %>
+﻿<%@ Page Title="我的预约" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="StuOrderInfo.aspx.cs" Inherits="StuOrderInfo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-   <style>
+    <style>
        form{
            padding:10px;
        }
@@ -30,7 +30,7 @@
             <asp:BoundField DataField="sex" HeaderText="性别" SortExpression="sex" />
             <asp:BoundField DataField="age" HeaderText="年龄" SortExpression="age" />
             <asp:BoundField DataField="lxfs" HeaderText="联系方式" SortExpression="lxfs" />
-            <asp:BoundField DataField="kemu" HeaderText="科目" SortExpression="kemu" />
+            <asp:BoundField DataField="grade" HeaderText="年级" SortExpression="grade" />
             <asp:BoundField DataField="yyzt" HeaderText="预约状态" SortExpression="yyzt" />
             <asp:TemplateField ItemStyle-Width="130">
                 <ItemTemplate>
@@ -40,7 +40,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conStr %>" DeleteCommand="DELETE FROM [TeacherInfo] WHERE [code] = @code" InsertCommand="INSERT INTO [TeacherInfo] ([code], [name], [pwd], [sex], [age], [lxfs], [kemu], [photoUrl]) VALUES (@code, @name, @pwd, @sex, @age, @lxfs, @kemu, @photoUrl)" SelectCommand="SELECT * FROM [TeacherOrder] where stu_code=@stu_code" UpdateCommand="UPDATE [TeacherInfo] SET [name] = @name, [pwd] = @pwd, [sex] = @sex, [age] = @age, [lxfs] = @lxfs, [kemu] = @kemu, [photoUrl] = @photoUrl WHERE [code] = @code">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conStr %>" DeleteCommand="DELETE FROM [TeacherInfo] WHERE [code] = @code" InsertCommand="INSERT INTO [TeacherInfo] ([code], [name], [pwd], [sex], [age], [lxfs], [kemu], [photoUrl]) VALUES (@code, @name, @pwd, @sex, @age, @lxfs, @kemu, @photoUrl)" SelectCommand="SELECT StuInfo.*,TeacherOrder.yyzt,TeacherOrder.id FROM StuInfo,[TeacherOrder] where StuInfo.code =TeacherOrder.stu_code and TeacherOrder.code=@code" UpdateCommand="UPDATE [TeacherInfo] SET [name] = @name, [pwd] = @pwd, [sex] = @sex, [age] = @age, [lxfs] = @lxfs, [kemu] = @kemu, [photoUrl] = @photoUrl WHERE [code] = @code">
         <DeleteParameters>
             <asp:Parameter Name="code" Type="String" />
         </DeleteParameters>
@@ -65,7 +65,7 @@
             <asp:Parameter Name="code" Type="String" />
         </UpdateParameters>
         <SelectParameters>
-            <asp:QueryStringParameter Name="stu_code" Type="String" QueryStringField="code" />
+            <asp:QueryStringParameter Name="code" Type="String" QueryStringField="code" />
         </SelectParameters>
     </asp:SqlDataSource>
 </asp:Content>
