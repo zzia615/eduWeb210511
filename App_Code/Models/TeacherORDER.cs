@@ -4,20 +4,41 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// TeaInfo 的摘要说明
+/// TeacherORDER 的摘要说明
 /// </summary>
-public class TeacherInfo
+
+public class TeacherORDER
 {
-    public TeacherInfo()
+    public TeacherORDER()
     {
         //
         // TODO: 在此处添加构造函数逻辑
         //
     }
     /// <summary>
+    /// 编号
+    /// </summary>
+
+    [Key(Identity = true)]
+
+    public int id { get; set; }
+    /// <summary>
+    /// 学员账号
+    /// </summary>
+    [Required]
+    [StringLength(50)]
+    public string stu_code { get; set; }
+
+    /// <summary>
+    /// 预约状态：已预约、已完成
+    /// </summary>
+    [Required]
+    [StringLength(20)]
+    public string yyzt { get; set; }
+
+    /// <summary>
     /// 账号
     /// </summary>
-    [Key]
     [Required]
     [StringLength(50)]
     public string code { get; set; }
@@ -27,12 +48,6 @@ public class TeacherInfo
     [Required]
     [StringLength(20)]
     public string name { get; set; }
-    /// <summary>
-    /// 密码
-    /// </summary>
-    [Required]
-    [StringLength(50)]
-    public string pwd { get; set; }
     /// <summary>
     /// 性别
     /// </summary>
@@ -58,4 +73,3 @@ public class TeacherInfo
     [StringLength(500)]
     public string photoUrl { get; set; }
 }
-
